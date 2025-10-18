@@ -9,6 +9,7 @@
  * @author Lenovo
  */
 public class SimuladorArbolB extends javax.swing.JFrame {
+    private java.util.List<Integer> arbolB = new java.util.ArrayList<>();
 
     /**
      * Creates new form SimuladorArbolB
@@ -46,6 +47,11 @@ public class SimuladorArbolB extends javax.swing.JFrame {
         jLabel3.setText("Buscar clave:");
 
         btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
 
@@ -105,6 +111,29 @@ public class SimuladorArbolB extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        try {
+            int clave = Integer.parseInt(txtClave.getText().trim());
+            if (arbolB.contains(clave)) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "La clave ya existe en el Árbol B.",
+                        "Duplicado", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            arbolB.add(clave);
+            java.util.Collections.sort(arbolB);
+            areaLog.append("✔ Clave " + clave + " insertada correctamente.\n");
+            areaLog.append("Estado actual del Árbol B: " + arbolB + "\n\n");
+            txtClave.setText("");
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Ingrese un número válido.",
+                    "Error de formato", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnInsertarActionPerformed
 
     /**
      * @param args the command line arguments
