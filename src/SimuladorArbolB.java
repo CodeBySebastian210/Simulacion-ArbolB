@@ -54,6 +54,11 @@ public class SimuladorArbolB extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
 
@@ -134,6 +139,44 @@ public class SimuladorArbolB extends javax.swing.JFrame {
                     "Error de formato", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        try {
+            int claveBuscada = Integer.parseInt(txtBuscar.getText().trim());
+            if (arbolB.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "El Árbol B está vacío. Inserte claves primero.",
+                        "Aviso", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            areaLog.append("🔎 Buscando la clave " + claveBuscada + "...\n");
+            for (int clave : arbolB) {
+                areaLog.append("   Visitando nodo con clave: " + clave + "\n");
+
+                if (clave == claveBuscada) {
+                    areaLog.append("✔ Clave encontrada: " + claveBuscada + "\n\n");
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "Clave " + claveBuscada + " encontrada en el Árbol B.",
+                            "Resultado", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    txtBuscar.setText("");
+                    return;
+                }
+            }
+            areaLog.append("❌ Clave " + claveBuscada + " no encontrada.\n\n");
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Clave no encontrada.",
+                    "Resultado", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+            txtBuscar.setText("");
+
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Ingrese un número válido para buscar.",
+                    "Error de formato", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
