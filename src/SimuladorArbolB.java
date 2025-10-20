@@ -61,6 +61,11 @@ public class SimuladorArbolB extends javax.swing.JFrame {
         });
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         areaLog.setColumns(20);
         areaLog.setRows(5);
@@ -177,6 +182,15 @@ public class SimuladorArbolB extends javax.swing.JFrame {
                     "Error de formato", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtClave.setText("");
+        txtBuscar.setText("");
+        areaLog.setText("");
+        arbolB.clear();
+        areaLog.append("✔ Interfaz y Árbol B reiniciados correctamente.\n");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
